@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+     <event name="catalog_controller_product_view">
+        <observer name="ProductView" instance="Hummingbird\Mod3\Observer\ProductView" />
+    </event>
+
+    <event name="controller_front_send_response_before">
+        <observer name="PageLoadView" instance="Hummingbird\Mod3\Observer\PageLoadView" />
+    </event>
+
+</config>
