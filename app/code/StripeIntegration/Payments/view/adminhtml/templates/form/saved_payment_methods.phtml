@@ -1,0 +1,33 @@
+<?php
+    $methods = $this->getSavedPaymentMethods();
+?>
+
+<div class="stripe-saved-payment-methods">
+    <?php if (empty($methods)): ?>
+        <input type="checkbox" style="display: none;" name="payment[cc_stripejs_token]" data-validate="{'required':true}" />
+
+        <label class="mage-error" for="payment[cc_stripejs_token]" id="payment[cc_stripejs_token]-error">
+            <?php echo __("The customer does not have any saved payment methods."); ?>
+        </label>
+    <?php else: ?>
+        <?php foreach ($methods as $method): ?>
+            <div class="saved-payment-method-option">
+                <input type="radio" id="<?php echo $method['id']; ?>" value="<?php echo $method['id']; ?>" name="payment[cc_stripejs_token]" data-validate="{'validate-one-required-by-name':true}" />
+                <label for="<?php echo $method['id']; ?>">
+                    <span class="payment-method-name"><?php echo $method['label']; ?></span>
+                    <img src="<?php echo $method['icon']; ?>" class="payment-method-icon" />
+                </label>
+            </div>
+        <?php endforeach; ?>
+
+        <label for="payment[cc_stripejs_token]" class="mage-error" id="payment[cc_stripejs_token]-error" style="display: none;">
+            <?php echo __("Please select a payment method."); ?>
+        </label>
+    <?php endif; ?>
+
+
+    <a class="button action-secondary action-add" target="_blank" href="<?php echo $block->getAddNewPaymentMethodURL(); ?>">
+        +
+        <?php echo __("Add new"); ?>
+    </a>
+</div>

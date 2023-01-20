@@ -1,0 +1,7 @@
+input PaymentMethodInput {
+    stripe_payments: StripePaymentsInput @doc(description:"Required input for Stripe Payments")
+}
+
+input StripePaymentsInput {
+    cc_stripejs_token: String! @doc(description:"Stripe.js generated payment method token")
+}

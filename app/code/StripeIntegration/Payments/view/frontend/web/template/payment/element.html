@@ -1,0 +1,100 @@
+<div class="payment-method stripe-payments"
+  data-bind="
+    css: {
+      '_active': (getCode() == isChecked())
+    }">
+  <div class="payment-method-title field choice">
+    <input type="radio"
+      name="payment[method]"
+      class="radio"
+      data-bind="
+        attr: { 'id': getCode() },
+        value: getCode(),
+        checked: isChecked,
+        click: selectPaymentMethod,
+        visible: isRadioButtonVisible()
+      "/>
+    <label class="label" data-bind="attr: {'for': getCode()}, visible: isRadioButtonVisible()">
+      <span data-bind="text: getTitle()"></span>
+    </label>
+  </div>
+
+  <div class="payment-method-content" data-bind="if: stripePaymentsError()">
+    <p class="message message-error error">
+      <!-- ko i18n: stripePaymentsError() --><!-- /ko -->
+    </p>
+  </div>
+
+  <div class="payment-method-content stripe-payments-card-form" data-bind="blockLoader: isLoading">
+    <div class="payment-method-billing-address">
+      <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+      <!-- ko template: getTemplate() --><!-- /ko -->
+      <!--/ko-->
+    </div>
+
+    <p class="stripe-payments-billing-address-warning" data-bind="if: !isBillingAddressSet()">
+      <!-- ko i18n: 'Please update your billing address to proceed.'--><!-- /ko -->
+    </p>
+
+    <div class="stripe-dropdown" data-bind="visible: selection">
+        <div class="stripe-dropdown-selection" data-bind="click: toggleDropdown, with: selection">
+          <img data-bind="if: icon, attr: { src: icon }" />
+          <span data-bind="text: label"></span>
+        </div>
+        <div data-bind="visible: isDropdownOpen" class="stripe-dropdown-container">
+          <ul class="stripe-dropdown-list">
+            <!-- ko foreach: dropdownOptions -->
+            <li data-bind="attr: { id: $data.value, class: $data.value }, click: function(data)
+              {
+                $parent.selection(data);
+                $parent.isDropdownOpen(false);
+                $parent.isPaymentFormVisible(false);
+              }">
+              <img data-bind="attr: { src: icon }" />
+              <span class="stripe-dropdown-item" data-bind="text: $data.label"></span>
+            </li>
+            <!-- /ko -->
+            <li class="new" data-bind="click: newPaymentMethod">
+              <a href="javascript:void(0);"><!-- ko i18n: 'New payment method' --><!-- /ko --></a>
+            </li>
+          </ul>
+        </div>
+    </div>
+
+    <div class="stripe-payments-elements no-wrap" data-bind="visible: isPaymentFormVisible">
+      <div id="stripe-payment-element" data-bind="afterRender: onPaymentElementContainerRendered">
+      <!-- a Stripe Payment Element will be inserted here. -->
+      </div>
+    </div>
+    <div id="stripe-payments-card-errors"></div>
+    <div data-bind="if: permanentError, visible: permanentError" class="stripe-permanent-error">
+      <span><!-- ko i18n: permanentError --><!-- /ko --></span>
+    </div>
+
+    <div class="checkout-agreements-block" data-bind="ifnot: permanentError">
+        <!-- ko foreach: $parent.getRegion('before-place-order') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+
+    <!-- ko foreach: getRegion('messages') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+
+    <div class="actions-toolbar" id="actions-toolbar" data-bind="ifnot: permanentError">
+      <div class="primary">
+        <button class="action primary checkout" type="submit"
+          data-bind="
+            click: placeOrder,
+            enable: isPlaceOrderEnabled(),
+            attr: {title: $t('Place Order')}
+          ">
+          <span data-bind="i18n: 'Place Order'"></span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
