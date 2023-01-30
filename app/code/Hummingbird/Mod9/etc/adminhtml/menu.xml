@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Hummingbird_Mod9::vaibhav" 
+        title="Vaibhav" 
+        module="Hummingbird_Mod9" 
+        sortOrder="55" 
+        resource="Magento_Backend::content"
+         />
+
+         <add id="Hummingbird_Mod9::vaibhav_sub"
+         title="vaibhav_config"
+         module="Hummingbird_Mod9"
+         sortOrder="1"
+         resource="Magento_Backend::content"
+         parent="Hummingbird_Mod9::vaibhav"
+         action="adminhtml/system_config/edit/section/vaibhav_section" />
+    </menu>
+</config>

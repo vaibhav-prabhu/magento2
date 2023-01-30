@@ -20,6 +20,7 @@
     },
     "version": "2.4.3",
     "require": {
+        "akeneo/module-magento2-connector-community": "103.*",
         "magento/composer-dependency-version-audit-plugin": "~0.1",
         "magento/composer-root-update-plugin": "~1.1",
         "magento/module-bundle-sample-data": "100.4.*",

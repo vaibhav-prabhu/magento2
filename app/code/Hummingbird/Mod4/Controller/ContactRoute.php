@@ -31,7 +31,7 @@ class ContactRoute implements RouterInterface {
             // $result->setModuleName("contact");
             $request->setModuleName('contact');
             // $request->setAlias(\Magento\Framework\Url::REWRITE_REQUEST_PATH_ALIAS,"contact");
-            return $this->actionPath->create('\Magento\Framework\App\Action\Forward'::class);
+            return $this->actionPath->create('\Magento\Framework\App\Action\Forward', ['request' => $request]);
             // return $result;
         }
 

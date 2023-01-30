@@ -16,8 +16,9 @@ class RouterView implements ObserverInterface {
     }
 
     public function execute(Observer $observer){
-        // $result = $observer->getData("router")->getRedirectUrl();
-
+        $result = $observer->getData("request");
+        $this->logger->info($result->_routerList);
+        // $this->logger->info("RouterList");
         // $this->logger->info("heelo");
     }
 

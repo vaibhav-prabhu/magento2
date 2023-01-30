@@ -27,6 +27,7 @@ class Index extends Action {
     public function execute(){
         $result = $this->_resultFactory->create(ResultFactory::TYPE_RAW);
         $result->setContents("Hello Admin You Have Access");
+        $this->_formKeyValidator = true;
         return $result;
     }
 
@@ -37,6 +38,11 @@ class Index extends Action {
     }
 
     public function _processUrlKeys(){
+        return true;
+    }
+
+    protected function _validateSecretKey()
+    {
         return true;
     }
 

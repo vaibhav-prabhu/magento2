@@ -2,7 +2,7 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
 
-     <event name="cms_controller_router_match_before">
+     <event name="controller_action_postdispatch">
         <observer name="RouterView" instance="Hummingbird\Mod4\Observer\RouterView" />
     </event>
 

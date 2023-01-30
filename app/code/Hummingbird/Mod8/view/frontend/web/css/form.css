@@ -1,0 +1,12 @@
+form {
+    margin: 0 auto 20px;
+    width: 50%;
+}
+
+button {
+    width: 100%;
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}

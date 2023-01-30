@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <css src="Hummingbird_Mod9::css/form.css" />
+    </head>
+
+    <referenceContainer name="content">
+        <block class="Hummingbird\Mod9\Block\Index" name="userstory9_index_index"
+            template="Hummingbird_Mod9::index.phtml" />
+    </referenceContainer>
+</page>
